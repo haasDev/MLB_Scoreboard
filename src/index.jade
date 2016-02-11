@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    head
+        title MLB Scoreboard
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+        link(rel="stylesheet" href="./css/main.css")
+        script(type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+        script(type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular.min.js")
+        script(type="text/javascript" src="./js/app.js")
+    body(ng-app="MLBScoresApp")
+        main(ng-controller="MainCtrl")
+          div.main
+            table(ng-repeat="game in games.data.games.game")
+              thead
+                tr
+                  th.status {{ status(game) }}
+                  th.score R
+                  th.score H
+                  th.score E
+              tbody
+                tr.home
+                  td.home
+                    .img-container
+                      img(ng-src="http://a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/{{ (game.home_name_abbrev === 'CWS') ? 'CHW' : game.home_name_abbrev }}.png&w=35&h=35")
+                    .team
+                      h2 {{game.home_team_name}}
+                  td.total
+                    span {{game.linescore.r.home}}
+                  td.score {{game.linescore.h.home}}
+                  td.score {{game.linescore.e.home}}
+                tr.away
+                  td.away
+                    .img-container
+                      img(ng-src="http://a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/{{ (game.away_name_abbrev === 'CWS') ? 'CHW' : game.away_name_abbrev }}.png&w=35&h=35")
+                    .team
+                      h2 {{game.away_team_name}}
+                  td.total
+                    span {{game.linescore.r.away}}
+                  td.score {{game.linescore.h.away}}
+                  td.score {{game.linescore.e.away}}
+          h1.text-center(ng-hide="games.data.games.game.length") There were no games played today :(
+          
+          
+          
+          
+          

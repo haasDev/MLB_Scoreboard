@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MLB Scoreboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+  </head>
+  <body ng-app="MLBScoresApp">
+    <main ng-controller="MainCtrl">
+      <div class="main">
+        <table ng-repeat="game in games.data.games.game">
+          <thead>
+            <tr>
+              <th class="status">{{ status(game) }}</th>
+              <th class="score">R</th>
+              <th class="score">H</th>
+              <th class="score">E</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="home">
+              <td class="home">
+                <div class="img-container"><img ng-src="http://a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/{{ (game.home_name_abbrev === 'CWS') ? 'CHW' : game.home_name_abbrev }}.png&amp;w=35&amp;h=35"></div>
+                <div class="team">
+                  <h2>{{game.home_team_name}}</h2>
+                </div>
+              </td>
+              <td class="total"><span>{{game.linescore.r.home}}</span></td>
+              <td class="score">{{game.linescore.h.home}}</td>
+              <td class="score">{{game.linescore.e.home}}</td>
+            </tr>
+            <tr class="away">
+              <td class="away">
+                <div class="img-container"><img ng-src="http://a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/{{ (game.away_name_abbrev === 'CWS') ? 'CHW' : game.away_name_abbrev }}.png&amp;w=35&amp;h=35"></div>
+                <div class="team">
+                  <h2>{{game.away_team_name}}</h2>
+                </div>
+              </td>
+              <td class="total"><span>{{game.linescore.r.away}}</span></td>
+              <td class="score">{{game.linescore.h.away}}</td>
+              <td class="score">{{game.linescore.e.away}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h1 ng-hide="games.data.games.game.length" class="text-center">There were no games played today :(</h1>
+    </main>
+  </body>
+</html>
