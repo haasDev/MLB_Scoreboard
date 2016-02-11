@@ -26,8 +26,7 @@ angular.module('MLBScoresApp', [])
     month = dateFormat(month);
     year = dateFormat(year);
 
-    // 'http://gd2.mlb.com/components/game/mlb/year_'+ year + '/month_' + month + '/day_'+ day + '/master_scoreboard.json'
-		 return $http.get('http://gd2.mlb.com/components/game/mlb/year_2015/month_07/day_11/master_scoreboard.json')
+		 return $http.get('http://gd2.mlb.com/components/game/mlb/year_'+ year + '/month_' + month + '/day_'+ day + '/master_scoreboard.json')
      		.success(function(data){
        		return data;
      		})
